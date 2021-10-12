@@ -1,11 +1,14 @@
 # from typing import Coroutine
-import machine
+from machine import Pin, PWM, Timer
 import utime
 
-led = machine.Pin(25, machine.Pin.OUT)
-cwpin = machine.Pin(26, machine.Pin.OUT)
-ccwpin = machine.Pin(27, machine.Pin.OUT)
+led = Pin(25, Pin.OUT)
+cwpin = PWM(Pin(26, Pin.OUT))
+ccwpin = PWM(Pin(27, Pin.OUT))
 
+frequency = 20000 # 20kHz
+cwpin.freq(int(frequency))
+ccwpin.freq(int(frequency))
 
 def deg2time(deg): # this motor speed is 10RPM.
 	# 若干誤差があるため、補正係数(実測により求めた)を入れる
@@ -13,16 +16,16 @@ def deg2time(deg): # this motor speed is 10RPM.
 	return deg/(60 + correction)
 
 def cw():
-	cwpin.value(1)
-	ccwpin.value(0)
+	cwpin.duty_u16(0x8000)
+	ccwpin.duty_u16(0)
 
 def ccw():
-	cwpin.value(0)
-	ccwpin.value(1)	
+	cwpin.duty_u16(0)
+	ccwpin.duty_u16(0xFFFF)
 
 def brake():
-	cwpin.value(1)
-	ccwpin.value(1)
+	cwpin.duty_u16(0xFFFF)
+	ccwpin.duty_u16(0xFFFF)
 
 def wait_rotate(deg_list):
 	deg = float(deg_list)
