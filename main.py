@@ -16,7 +16,7 @@ def deg2time(deg): # this motor speed is 10RPM.
 	return deg/(60 + correction)
 
 def cw():
-	cwpin.duty_u16(0x8000)
+	cwpin.duty_u16(0xFFFF)
 	ccwpin.duty_u16(0)
 
 def ccw():
