@@ -16,7 +16,7 @@ def deg2time(deg): # this motor speed is 10RPM.
 	return deg/(360 * 10 / 60 + correction)
 
 
-def deg2timeRpm(deg, rpm): # this motor speed is 0~10RPM.
+def deg2timeRpm(deg, rpm): # this motor speed is 1~10RPM.
 	# Since there is an error, a correction factor will be included (not yet calculated).
 	correction = 0
 	return deg/(360 * rpm / 60 + correction)
@@ -134,13 +134,13 @@ while True:
 				print("rotating CW", param1_float, "deg at", param2_float, "RPM")	
 				led.value(1)
 
-				if(param2_float > 0 or param2_float < 10):
+				if(param2_float > 1 or param2_float < 10):
 					cw_rpm(param2_float)
 					wait_rotate_rpm(param1_float, param2_float)
 					brake()
 					led.value(0)
 				else:
-					print("please input RPM 0 ~ 10")
+					print("please input RPM 1 ~ 10")
 
 
 		elif command_id == "CCW":
@@ -151,13 +151,13 @@ while True:
 				print("rotating CCW", param1_float, "deg at", param2_float, "RPM")	
 				led.value(1)
 
-				if(param2_float > 0 or param2_float < 10):
+				if(param2_float > 1 or param2_float < 10):
 					ccw_rpm(param2_float)
 					wait_rotate_rpm(param1_float, param2_float)
 					brake()
 					led.value(0)
 				else:
-					print("please input RPM 0 ~ 10")
+					print("please input RPM 1 ~ 10")
 
 	
 		# for arg > 2 (error cases)
