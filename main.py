@@ -11,13 +11,13 @@ cwpin.freq(int(frequency))
 ccwpin.freq(int(frequency))
 
 def deg2time(deg): # this motor speed is 10RPM.
-	# 若干誤差があるため、補正係数(実測により求めた)を入れる
+	# Since there is an error, a correction factor is inserted to compensate.
 	correction = 0.8
 	return deg/(360 * 10 / 60 + correction)
 
 
 def deg2timeRpm(deg, rpm): # this motor speed is 0~10RPM.
-	# 若干誤差があるため、補正係数を入れる予定（未計算）
+	# Since there is an error, a correction factor will be included (not yet calculated).
 	correction = 0
 	return deg/(360 * int(rpm) / 60 + correction)
 
@@ -66,7 +66,7 @@ while True:
 	command_list = commands.split(" ")
 	command_id = command_list[0]
 
-	print(len(command_list))
+	# print(len(command_list))
 	# for arg: 0
 	if(len(command_list)==1):
 		if  command_id == "LON":	# for debug
@@ -85,7 +85,6 @@ while True:
 				print("rotating CW", command_list[1])	
 				led.value(1)
 
-				# 　ここに時計回りの動作を記入する
 				cw()
 				wait_rotate(command_list[1])
 				brake()
@@ -99,7 +98,6 @@ while True:
 				print("rotating CCW", command_list[1])
 				led.value(1)
 
-				# 　ここに反時計回りの動作を記入する
 				ccw()
 				wait_rotate(command_list[1])
 				brake()
@@ -118,7 +116,6 @@ while True:
 				print("rotating CW", param1)	
 				led.value(1)
 
-				# 　ここに時計回りの動作を記入する
 				if(float(param2) > 0 or float(param2) < 10):
 					cw_rpm(param2)
 					wait_rotate_rpm(param1,param2)
@@ -135,7 +132,6 @@ while True:
 				print("rotating CCW", param1)
 				led.value(1)
 
-				# 　ここに時計回りの動作を記入する
 				if(float(param2) > 0 or float(param2) < 10):
 					ccw_rpm(param2)
 					wait_rotate_rpm(param1,param2)
