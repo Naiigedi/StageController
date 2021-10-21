@@ -11,9 +11,10 @@ Rasberry Pi picoを使って、シリアル通信でBD6231F-E2を制御する
 
 # How to use
 1. Assemble the board by referring to schematic(circuit\Circuit.pdf) and BOM(BOM\BOM.xlsx).
-2. Assemble the stage with reference to the photos() and BOM(BOM\BOM.xlsx).
-3. Upload main.py to your Rasberry Pi pico.
-4. Control the stage by typing command.
+2. Printing a body(STL\base.stl and table.stl) with a 3D printer
+3. Assemble the stage with reference to the photos() and BOM(BOM\BOM.xlsx).
+4. Upload main.py to your Rasberry Pi pico.
+5. Control the stage by typing command.
 
 
 # Command
